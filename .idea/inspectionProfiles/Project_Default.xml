@@ -1,0 +1,29 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="HtmlUnknownAttribute" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="myValues">
+        <value>
+          <list size="2">
+            <item index="0" class="java.lang.String" itemvalue="images" />
+            <item index="1" class="java.lang.String" itemvalue="static" />
+          </list>
+        </value>
+      </option>
+      <option name="myCustomValuesEnabled" value="true" />
+    </inspection_tool>
+    <inspection_tool class="PyUnresolvedReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredIdentifiers">
+        <list>
+          <option value="AppOne.models.AccessRecord.objects" />
+          <option value="AppOne.models.Webpage.objects" />
+          <option value="LCARROBuisness.BuisnessAPI.urls.BuisnessAPI" />
+          <option value="LCARROBuisness.LCARROBuisness.urls.BuisnessAPI" />
+          <option value="LCARROBuisness.BuisnessAPI.views.BuisnessAPI" />
+          <option value="LCARROBuisness.LCARROBuisness.router.BuisnessAPI" />
+          <option value="contact.models.BuisnessModel.objects" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>
