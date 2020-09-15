@@ -16,7 +16,12 @@ class Album(models.Model):
     album_rating = models.IntegerField(choices=Rating.choices)
 
     def __str__(self):
-        return self.title + ' - ' + self.description
+        return self.album_title + ' - ' + self.description
+
+    @property
+    def songs(self):
+        return self.songs_set.all()
+
 
 class Song(models.Model):
     class Rating(models.IntegerChoices):
