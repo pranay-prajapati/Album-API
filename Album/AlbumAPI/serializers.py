@@ -16,7 +16,7 @@ class AlbumSerializer(serializers.ModelSerializer):
     class Meta:
         model = Album
         fields = [
-            'title', 'description', 'year', 'rating', 'songs'
+            'title', 'description', 'year', 'rating', 'songs',
         ]
 
     def create(self, validated_data):
