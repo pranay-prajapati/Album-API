@@ -13,6 +13,7 @@ class AppBaseModel(models.Model):
     class Meta:
         abstract = True
 
+
 class BaseMedia(models.Model):
     class Rating(models.IntegerChoices):
         One = 1
@@ -31,7 +32,7 @@ class BaseMedia(models.Model):
             return self.title
 
 
-class Album(AppBaseModel,BaseMedia):
+class Album(AppBaseModel, BaseMedia):
     description = models.CharField(max_length=150)
     year = models.PositiveIntegerField()
 
@@ -40,7 +41,12 @@ class Album(AppBaseModel,BaseMedia):
         return self.songs_set.all()
 
 
-class Song(AppBaseModel,BaseMedia):
+class Song(AppBaseModel, BaseMedia):
     album = models.ForeignKey(Album, related_name='songs', on_delete=models.CASCADE)
     duration = models.CharField(max_length=10)
     genre = models.CharField(max_length=20)
+
+
+class Podcast(AppBaseModel, BaseMedia):
+    song = models.ForeignKey(Song, related_name='podcasts', on_delete=models.CASCADE)
+    fans = models.PositiveIntegerField()

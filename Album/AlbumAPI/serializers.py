@@ -3,7 +3,7 @@ from rest_framework.fields import empty
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.models import AnonymousUser
 
-from .models import Album, Song, AppBaseModel
+from .models import Album, Song, Podcast, AppBaseModel
 
 
 class AppBaseSerializer(serializers.ModelSerializer):
@@ -104,12 +104,24 @@ class AppBaseSerializer(serializers.ModelSerializer):
         return self.initial_data.pop(key, None)
 
 
+class PodcastSerializer(AppBaseSerializer):
+    class Meta:
+        model = Podcast
+
+
 class SongSerializer(AppBaseSerializer):
-    id = serializers.IntegerField(required=False)
     album = serializers.HiddenField(default=None)
+    podcasts = PodcastSerializer(many=True)
 
     class Meta:
         model = Song
+
+    def create(self, validated_data):
+        podcasts_data = validated_data.pop('podcasts')
+        song = super().create(validated_data)
+        for podcast_data in podcasts_data:
+            self.nested_create(podcast_data, SongSerializer, song=song)
+        return song
 
 
 class AlbumSerializer(AppBaseSerializer):
